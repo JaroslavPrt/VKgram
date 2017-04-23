@@ -13,19 +13,17 @@ export class VkService {
 
     public signIn(): Promise<any> {
         return new Promise((resolve, reject) => {
-            VK.Auth.login((result) => {
-                if (result.status === 'connected') {
-                    resolve(true);
-                } else {
-                    reject({message: 'oops something went wrong'});
-                }
+            VK.Auth.login((response) => {
+                response.session ? resolve(true) : reject({message: 'oops something went wrong'});
             });
         });
     }
 
-    public getLoginStatus() {
-        VK.Auth.getLoginStatus((status) => {
-            console.dir(status);
+    public getLoginStatus(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            VK.Auth.getLoginStatus((response) => {
+                response.session ? resolve(true) : reject(false);
+            });
         });
     }
 }

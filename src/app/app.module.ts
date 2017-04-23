@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 
-import {VkService} from './services/vk.service';
+import { LoginComponent } from './login/login.component';
 import { AlbumsComponent } from './albums/albums.component';
+
+import { VkService } from './services/vk.service';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,10 @@ import { AlbumsComponent } from './albums/albums.component';
         HttpModule,
         AppRoutingModule
     ],
-    providers: [ VkService ],
+    providers: [
+        VkService,
+        AuthGuard
+    ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule {

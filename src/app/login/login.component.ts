@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { VkService } from '../services/vk.service';
@@ -9,12 +9,17 @@ import { VkService } from '../services/vk.service';
     styleUrls: ['./login.component.scss'],
     providers: [ VkService ]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
     constructor(
         private vkService: VkService,
         private router: Router
     ) {}
+
+    ngOnInit() {
+        this.vkService.getLoginStatus()
+            .then(() => this.redirectToAlbums());
+    }
 
     singIn() {
         this.vkService.signIn()
