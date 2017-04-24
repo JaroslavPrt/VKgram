@@ -1,18 +1,4 @@
-<header>
-    <div class="container">
-        <div class="row">
-            <div *ngIf="user" class="user col align-self-center text-left">
-                <img src="{{ user.avatarUrl() }}" alt="ava" class="img-thumbnail">
-                <span class="align-middle">{{ user.fullName() }}</span>
-            </div>
-            <div class="col align-self-center text-right">
-                <button class="btn btn-link" (click)="signOut()">
-                    <i class="icon ion-log-out"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</header>
+<app-header *ngIf="user" [image-url]="user.avatarUrl()" [title]="user.fullName()"></app-header>
 <div class="container">
     <div class="list-group">
         <section *ngFor="let album of albums"
@@ -20,7 +6,7 @@
                  class="list-group-item list-group-item-action justify-content-between">
             <div class="album clearfix">
                 <div  class="album--image float-left">
-                    <img src="{{ album.thumbSrc }}" alt="album image">
+                    <img src="{{ album.thumbSrc }}" alt="album image" class="img-thumbnail">
                 </div>
                 <div class="album--detail float-left">
                     <p class="title">{{ album.title }}</p>

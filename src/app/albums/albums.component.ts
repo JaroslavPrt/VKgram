@@ -31,13 +31,7 @@ export class AlbumsComponent implements OnInit {
             .catch((error) => console.log(error.message));
     }
 
-    signOut() {
-        this.vkService.signOut()
-            .then(() => this.router.navigate(['/login']))
-            .catch((error) => console.log(error.message));
-    }
-
     openAlbum(album) {
-        console.dir(album.id);
+        this.router.navigate(['/albums', album.id]);
     }
 }

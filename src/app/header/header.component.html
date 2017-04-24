@@ -1,0 +1,16 @@
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="header-data col align-self-center text-left">
+                <!--<i *ngIf="isAlbumState()" class="icon "></i>-->
+                <img src="{{ imageUrl }}" alt="image" class="img-thumbnail">
+                <span class="align-middle">{{ title }}</span>
+            </div>
+            <div class="col align-self-center text-right">
+                <button class="btn btn-link" (click)="signOut()">
+                    <i class="icon ion-log-out"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>

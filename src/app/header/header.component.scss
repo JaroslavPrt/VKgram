@@ -1,0 +1,26 @@
+@import 'variables';
+
+header {
+    background-color: $extra-color;
+    height: 70px;
+
+    .header-data {
+        img {
+            border-radius: 50%;
+            width: 55px;
+        }
+        span {
+            font-weight: 600;
+            font-size: 24px;
+            color: #ffffff;
+        }
+    }
+
+    i {
+        color: #ffffff;
+        font-size: 40px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

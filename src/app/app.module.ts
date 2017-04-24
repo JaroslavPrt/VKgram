@@ -11,12 +11,16 @@ import { AlbumsComponent } from './albums/albums.component';
 
 import { VkService } from './services/vk.service';
 import { AuthGuard } from './services/auth.guard';
+import { HeaderComponent } from './header/header.component';
+import { AlbumPhotosComponent } from './album-photos/album-photos.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        AlbumsComponent
+        AlbumsComponent,
+        HeaderComponent,
+        AlbumPhotosComponent
     ],
     imports: [
         BrowserModule,

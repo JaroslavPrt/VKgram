@@ -4,6 +4,7 @@ import { AuthGuard } from './services/auth.guard';
 
 import { LoginComponent } from './login/login.component';
 import { AlbumsComponent } from './albums/albums.component';
+import { AlbumPhotosComponent } from './album-photos/album-photos.component';
 
 const routes: Routes = [
     {
@@ -19,7 +20,12 @@ const routes: Routes = [
         path: 'albums',
         component: AlbumsComponent,
         canActivate: [ AuthGuard ]
-    }
+    },
+    {
+        path: 'albums/:id',
+        component: AlbumPhotosComponent,
+        canActivate: [ AuthGuard ]
+    },
 ];
 
 @NgModule({
