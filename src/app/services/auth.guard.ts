@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
     constructor(private vkService: VkService, private router: Router) {}
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
-        return this.vkService.getLoginStatus()
+        return this.vkService.loginStatus()
             .then(() => { return true; })
             .catch(() => {
                 this.router.navigate(['/login']);

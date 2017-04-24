@@ -1,3 +1,34 @@
-<p>
-  albums works!
-</p>
+<header>
+    <div class="container">
+        <div class="row">
+            <div *ngIf="user" class="user col align-self-center text-left">
+                <img src="{{ user.avatarUrl() }}" alt="ava" class="img-thumbnail">
+                <span class="align-middle">{{ user.fullName() }}</span>
+            </div>
+            <div class="col align-self-center text-right">
+                <button class="btn btn-link" (click)="signOut()">
+                    <i class="icon ion-log-out"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="list-group">
+        <section *ngFor="let album of albums"
+                 (click)="openAlbum(album)"
+                 class="list-group-item list-group-item-action justify-content-between">
+            <div class="album clearfix">
+                <div  class="album--image float-left">
+                    <img src="{{ album.thumbSrc }}" alt="album image">
+                </div>
+                <div class="album--detail float-left">
+                    <p class="title">{{ album.title }}</p>
+                    <p class="size"><i class="icon ion-folder"></i>{{ album.size }} files</p>
+                    <p class="updated"><i class="icon ion-edit"></i>{{ album.lastUpdated() }}</p>
+                </div>
+            </div>
+            <i class="arrow icon ion-chevron-right"></i>
+        </section>
+    </div>
+</div>

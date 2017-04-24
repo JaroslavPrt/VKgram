@@ -1,0 +1,54 @@
+@import 'variables';
+
+header {
+    background-color: $extra-color;
+    height: 70px;
+
+    .user {
+        img {
+            border-radius: 50%;
+            width: 55px;
+        }
+        span {
+            font-weight: 600;
+            font-size: 24px;
+            color: #ffffff;
+        }
+    }
+
+    i {
+        color: #ffffff;
+        font-size: 40px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.album {
+    &--image {
+        width: 100px;
+        height: 100px;
+    }
+    &--detail {
+        margin-left: 20px;
+        p {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 14px;
+            i {
+                margin-right: 7px;
+            }
+        }
+        .title {
+            font-weight: bold;
+            color: $extra-color;
+            font-size: 18px;
+        }
+    }
+}
+
+.arrow {
+    color: $extra-color;
+    font-size: 40px;
+}

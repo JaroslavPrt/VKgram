@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.vkService.getLoginStatus()
+        this.vkService.loginStatus()
             .then(() => this.redirectToAlbums());
     }
 
