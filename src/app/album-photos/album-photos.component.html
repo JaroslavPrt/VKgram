@@ -2,10 +2,10 @@
 </app-header>
 <div class="container" *ngIf="photos">
     <div class="photos">
-        <div class="row  photos--line" *ngFor="let i of rowsCount">
+        <div class="row photos--line" *ngFor="let i of rowsCount">
             <div class="col-3" *ngFor="let photo of photos | slice:(i*4):(i+1)*4">
                 <div [ngStyle]="{'background-image': 'url(' + photo.smallUrl + ')'}"
-                     class="img-thumbnail photo-wrapper img-tooltip">
+                     class="img-thumbnail photo-wrapper img-container">
                     <!-- tooltip body -->
                     <div class="img-tooltip--content">
                         <table class="img-info">
@@ -30,6 +30,10 @@
                                 <td class="img-info--detail">{{ photo.caption }}</td>
                             </tr>
                         </table>
+                    </div>
+                    <div class="bottom-panel bg-faded">
+                        <i class="icon ion-checkmark-round"></i>
+                        <span>Select</span>
                     </div>
                 </div>
             </div>

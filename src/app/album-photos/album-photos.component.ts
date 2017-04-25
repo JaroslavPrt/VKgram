@@ -43,10 +43,4 @@ export class AlbumPhotosComponent implements OnInit {
             })
             .catch(error => console.log(error.message));
     }
-
-    showTooltip(target: HTMLElement) {
-        this.tooltipTemplate = target.children[0].innerHTML;
-        console.log('fuck');
-        // target.setAttribute('title', target.children[0].innerHTML);
-    }
 }
