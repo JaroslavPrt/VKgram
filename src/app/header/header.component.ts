@@ -13,7 +13,7 @@ export class HeaderComponent {
 
     @Input('image-url') imageUrl: string;
     @Input('title') title: string;
-    @Input() type: string = 'all';
+    @Input() type = 'all';
 
     constructor(
         private vkService: VkService,
@@ -23,10 +23,10 @@ export class HeaderComponent {
     signOut() {
         this.vkService.signOut()
             .then(() => this.router.navigate(['/login']))
-            .catch((error) => console.log(error.message));
+            .catch(error => console.log(error.message));
     }
 
-    isAlbumState() {
-        return this.type === 'album';
+    isAllAlbums() {
+        return this.type === 'all';
     }
 }

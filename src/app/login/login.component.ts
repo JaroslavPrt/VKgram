@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     singIn() {
         this.vkService.signIn()
             .then(() => this.redirectToAlbums())
-            .catch((error) => console.log('login', error.message));
+            .catch(error => console.log('login', error.message));
     }
 
     private redirectToAlbums() {

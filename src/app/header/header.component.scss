@@ -5,14 +5,21 @@ header {
     height: 70px;
 
     .header-data {
-        img {
-            border-radius: 50%;
-            width: 55px;
+        height: 70px;
+        i {
+            font-size: 30px;
         }
-        span {
+        &--image {
+            width: 55px;
+            display: inline-block;
+            border-radius: 50%;
+            margin-top: 7px;
+        }
+        &--title {
             font-weight: 600;
             font-size: 24px;
             color: #ffffff;
+            margin-left: 10px;
         }
     }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { User } from '../models/user.model';
 import { Album } from '../models/album.model';
+import { Observable } from "rxjs/Observable";
 
 declare const VK: any;
 
@@ -14,7 +15,7 @@ export class VkService {
         VK.init({apiId: this.app_id});
     }
 
-    public signIn(): Promise<any> {
+    signIn(): Promise<any> {
         return new Promise((resolve, reject) => {
             VK.Auth.login((response) => {
                 response.session ? resolve(true) : reject(this.handleError(response));
@@ -22,7 +23,7 @@ export class VkService {
         });
     }
 
-    public signOut(): Promise<any>  {
+    signOut(): Promise<any>  {
         return new Promise((resolve, reject) => {
             VK.Auth.logout((response) => {
                 response.status === 'unknown' ? resolve(true) : reject(this.handleError(response));
@@ -30,7 +31,7 @@ export class VkService {
         });
     }
 
-    public loginStatus(): Promise<boolean> {
+    loginStatus(): Promise<boolean> {
         return new Promise((resolve, reject) => {
             VK.Auth.getLoginStatus( function (response) {
                 response.session ? resolve(true) : reject(false);
@@ -38,7 +39,7 @@ export class VkService {
         });
     }
 
-    public userInfo(): Promise<any> {
+    userInfo(): Promise<any> {
         return new Promise((resolve, reject) => {
             VK.Api.call('users.get', {fields: 'photo_50, nickname'}, (r) => {
                 if (r.response[0]) {
@@ -52,9 +53,25 @@ export class VkService {
         });
     }
 
-    public getAlbums(): Promise<any> {
+
+    getAlbums(): Promise<any> {
+        let opts = {
+            need_covers: 1,
+            need_system: 1
+        };
+        return this.callGetAlbums(opts);
+    }
+
+    getAlbumById(id): Promise<any> {
+        let opts = {
+            album_ids: id
+        };
+        return this.callGetAlbums(opts);
+    }
+
+    private callGetAlbums(opts): Promise<any> {
         return new Promise((resolve, reject) => {
-            VK.Api.call('photos.getAlbums', {need_covers: 1, need_system: 1}, (r) => {
+            VK.Api.call('photos.getAlbums', opts, (r) => {
                 r.response ? resolve(this.convertApiAlbums(r.response)) : reject(this.handleError(r));
             });
         });

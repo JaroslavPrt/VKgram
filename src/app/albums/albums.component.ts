@@ -14,7 +14,7 @@ import { Album } from '../models/album.model';
 export class AlbumsComponent implements OnInit {
 
     user: User;
-    albums: Album[] = [];
+    albums: Album[];
 
     constructor(
         private vkService: VkService,
@@ -23,12 +23,12 @@ export class AlbumsComponent implements OnInit {
 
     ngOnInit() {
         this.vkService.userInfo()
-            .then((user) => this.user = user)
-            .catch((error) => console.log(error.message));
+            .then(user => this.user = user)
+            .catch(error => console.log(error.message));
 
         this.vkService.getAlbums()
-            .then((albums) => this.albums = albums)
-            .catch((error) => console.log(error.message));
+            .then(albums => this.albums = albums)
+            .catch(error => console.log(error.message));
     }
 
     openAlbum(album) {

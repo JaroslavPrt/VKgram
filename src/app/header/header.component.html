@@ -1,10 +1,13 @@
 <header>
     <div class="container">
         <div class="row">
-            <div class="header-data col align-self-center text-left">
-                <!--<i *ngIf="isAlbumState()" class="icon "></i>-->
-                <img src="{{ imageUrl }}" alt="image" class="img-thumbnail">
-                <span class="align-middle">{{ title }}</span>
+            <div class="col header-data">
+                <i *ngIf="!isAllAlbums()" class="icon ion-chevron-left"></i>
+                <img *ngIf="isAllAlbums()"
+                     src="{{ imageUrl }}"
+                     alt="image"
+                     class="img-thumbnail header-data--image">
+                <span class="header-data--title">{{ title }}</span>
             </div>
             <div class="col align-self-center text-right">
                 <button class="btn btn-link" (click)="signOut()">
