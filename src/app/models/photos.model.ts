@@ -5,7 +5,7 @@ export class Photo {
     likes: number;
     comments: number;
     reposts: number;
-    text: string;
+    caption: string;
     private _created: Date;
 
     constructor(small, big, likes, comments, reposts, text, created) {
@@ -14,7 +14,7 @@ export class Photo {
         this.likes = likes;
         this.comments = comments;
         this.reposts = reposts;
-        this.text = text;
+        this.caption = text;
         this._created = new Date(created);
     }
 

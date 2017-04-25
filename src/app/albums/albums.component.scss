@@ -8,6 +8,8 @@
     &--image {
         width: 100px;
         height: 100px;
+        background: no-repeat center center;
+        background-size: cover;
     }
     &--detail {
         margin-left: 20px;

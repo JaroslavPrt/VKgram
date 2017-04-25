@@ -1,17 +1,42 @@
-<app-header *ngIf="album"
-            [image-url]="album.thumbSrc"
-            [title]="album.title"
-            [type]="album">
+<app-header *ngIf="album" [image-url]="album.thumbSrc" [title]="album.title" [type]="album">
 </app-header>
 <div class="container" *ngIf="photos">
-    <div class="row photos-line" *ngFor="let i of rowsCount">
-        <div class="col-3" *ngFor="let photo of photos | slice:(i*4):(i+1)*4">
-            <div class="photo-wrapper" [ngStyle]="{'background-image': 'url(' + photo.smallUrl + ')'}">
-            
+    <div class="photos">
+        <div class="row  photos--line" *ngFor="let i of rowsCount">
+            <div class="col-3" *ngFor="let photo of photos | slice:(i*4):(i+1)*4">
+                <div [ngStyle]="{'background-image': 'url(' + photo.smallUrl + ')'}"
+                     class="img-thumbnail photo-wrapper img-tooltip">
+                    <!-- tooltip body -->
+                    <div class="img-tooltip--content">
+                        <table class="img-info">
+                            <tr class="align-top">
+                                <th class="img-info--title">Likes:</th>
+                                <td class="img-info--detail">{{ photo.likes }}</td>
+                            </tr>
+                            <tr class="align-top">
+                                <th class="img-info--title">Reposts:</th>
+                                <td class="img-info--detail">{{ photo.reposts }}</td>
+                            </tr>
+                            <tr class="align-top">
+                                <th class="img-info--title">Comments:</th>
+                                <td class="img-info--detail">{{ photo.comments }}</td>
+                            </tr>
+                            <tr class="align-top">
+                                <th class="img-info--title">Created:</th>
+                                <td class="img-info--detail">{{ photo.cteated() }}</td>
+                            </tr>
+                            <tr class="align-top" *ngIf="photo.caption">
+                                <th class="img-info--title">Caption:</th>
+                                <td class="img-info--detail">{{ photo.caption }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 

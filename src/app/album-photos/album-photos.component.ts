@@ -19,6 +19,7 @@ export class AlbumPhotosComponent implements OnInit {
     album: Album;
     photos: Photo[] = [];
     rowsCount = [];
+    tooltipTemplate: string;
 
     constructor(
         private vkService: VkService,
@@ -41,5 +42,11 @@ export class AlbumPhotosComponent implements OnInit {
                 this.photos = photos as Photo[];
             })
             .catch(error => console.log(error.message));
+    }
+
+    showTooltip(target: HTMLElement) {
+        this.tooltipTemplate = target.children[0].innerHTML;
+        console.log('fuck');
+        // target.setAttribute('title', target.children[0].innerHTML);
     }
 }

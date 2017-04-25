@@ -5,8 +5,8 @@
                  (click)="openAlbum(album)"
                  class="list-group-item list-group-item-action justify-content-between">
             <div class="album clearfix">
-                <div  class="album--image float-left">
-                    <img src="{{ album.thumbSrc }}" alt="album image" class="img-thumbnail">
+                <div  class="album--image float-left img-thumbnail"
+                      [ngStyle]="{'background-image': 'url(' + album.thumbSrc + ')'}">
                 </div>
                 <div class="album--detail float-left">
                     <p class="title">{{ album.title }}</p>
