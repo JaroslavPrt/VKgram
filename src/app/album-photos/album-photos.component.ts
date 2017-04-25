@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Album } from '../models/album.model';
 import { VkService } from '../services/vk.service';
@@ -23,7 +23,8 @@ export class AlbumPhotosComponent implements OnInit {
 
     constructor(
         private vkService: VkService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -42,5 +43,9 @@ export class AlbumPhotosComponent implements OnInit {
                 this.photos = photos as Photo[];
             })
             .catch(error => console.log(error.message));
+    }
+
+    openPhoto(photo) {
+        this.router.navigate(['/photo', photo.id]);
     }
 }

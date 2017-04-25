@@ -1,16 +1,16 @@
 export class Photo {
 
+    id: number;
     smallUrl: string;
-    bigUrl: string;
     likes: number;
     comments: number;
     reposts: number;
     caption: string;
     private _created: Date;
 
-    constructor(small, big, likes, comments, reposts, text, created) {
+    constructor(id, small, likes, comments, reposts, text, created) {
+        this.id = id;
         this.smallUrl = small;
-        this.bigUrl = big;
         this.likes = likes;
         this.comments = comments;
         this.reposts = reposts;

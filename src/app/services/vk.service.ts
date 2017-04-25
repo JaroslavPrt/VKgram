@@ -95,7 +95,7 @@ export class VkService {
     private convertApiPhotos(apiPhotos) {
         let photos = [];
         for (let p of apiPhotos) {
-            photos.push(new Photo(p.sizes[2].src, p.sizes.pop().src, p.likes.count, p.comments.count, p.reposts.count,
+            photos.push(new Photo(p.pid, p.sizes[2].src, p.likes.count, p.comments.count, p.reposts.count,
                 p.text, (+p.created * 1000)));
         }
         return photos;

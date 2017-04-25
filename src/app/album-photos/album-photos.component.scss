@@ -24,44 +24,41 @@ $img-width: 200px;
 
 .img-container {
     position: relative;
-    &--content {
-        visibility: hidden;
-
-        background-color: black;
-        color: #fff;
-        opacity: 0.85;
-
-        border-radius: 7px;
-        padding: 5px 7px;
-        position: absolute;
-        top: 105%;
-        z-index: 5;
-
-        &::after {
-            content: " ";
-            position: absolute;
-            bottom: 100%;
-            left: $img-width / 2;
-            border: 10px solid transparent;
-            border-bottom-color: black;
-        }
-    }
     &:hover .img-tooltip--content {
         visibility: visible;
     }
-
     .bottom-panel {
-        cursor: pointer;
-        padding-left: 10px;
         position: absolute;
         bottom: 0;
         right: 0;
         left: 0;
         color: $extra-color;
+        cursor: pointer;
+        padding-left: 10px;
         span {
             text-decoration: underline dotted;
             letter-spacing: 1px;
         }
+    }
+}
+
+.img-tooltip--content {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    opacity: 0.85;
+    border-radius: 7px;
+    padding: 5px 7px;
+    position: absolute;
+    top: 105%;
+    z-index: 5;
+    &::after {
+        content: " ";
+        position: absolute;
+        bottom: 100%;
+        left: $img-width / 2;
+        border: 10px solid transparent;
+        border-bottom-color: black;
     }
 }
 

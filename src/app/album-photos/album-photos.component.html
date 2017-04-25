@@ -1,4 +1,4 @@
-<app-header *ngIf="album" [image-url]="album.thumbSrc" [title]="album.title" [type]="album">
+<app-header *ngIf="album" [title]="album.title" [type]="album">
 </app-header>
 <div class="container" *ngIf="photos">
     <div class="photos">
@@ -31,7 +31,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="bottom-panel bg-faded">
+                    <div class="bottom-panel bg-faded" (click)="openPhoto(photo)">
                         <i class="icon ion-checkmark-round"></i>
                         <span>Select</span>
                     </div>
