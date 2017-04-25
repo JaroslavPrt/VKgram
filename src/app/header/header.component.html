@@ -2,12 +2,14 @@
     <div class="container">
         <div class="row">
             <div class="col header-data">
-                <i *ngIf="!isAllAlbums()" class="icon ion-chevron-left"></i>
+                <span *ngIf="!isAllAlbums()" (click)="goBack()">
+                    <i class="icon ion-chevron-left"></i>
+                </span>
                 <img *ngIf="isAllAlbums()"
                      src="{{ imageUrl }}"
                      alt="image"
                      class="img-thumbnail header-data--image">
-                <span class="header-data--title">{{ title }}</span>
+                <span class="align-middle header-data--title">{{ title }}</span>
             </div>
             <div class="col align-self-center text-right">
                 <button class="btn btn-link" (click)="signOut()">

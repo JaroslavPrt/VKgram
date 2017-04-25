@@ -4,21 +4,20 @@ export class Album {
     title: string;
     size: number;
     thumbSrc: string;
-
-    private updated: Date;
+    private _updated: Date;
 
     constructor(id, title, size, ts, updated) {
         this.id = id;
         this.title = title;
         this.size = size;
         this.thumbSrc = ts;
-        this.updated = new Date(updated);
+        this._updated = new Date(updated);
     }
 
     lastUpdated() {
-        if (this.updated.getTime() === new Date(0).getTime()) {
+        if (this._updated.getTime() === new Date(0).getTime()) {
             return 'undefined';
         }
-        return this.updated.toLocaleDateString('en-US');
+        return this._updated.toLocaleDateString('en-US');
     }
 }

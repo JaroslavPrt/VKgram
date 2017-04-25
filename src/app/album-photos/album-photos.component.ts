@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { Album } from '../models/album.model';
 import { VkService } from '../services/vk.service';
+import { Photo } from '../models/photos.model';
 
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/toPromise';
@@ -17,9 +17,10 @@ import 'rxjs/add/operator/toPromise';
 export class AlbumPhotosComponent implements OnInit {
 
     album: Album;
+    photos: Photo[] = [];
+    rowsCount = [];
 
     constructor(
-        private location: Location,
         private vkService: VkService,
         private route: ActivatedRoute
     ) { }
@@ -30,11 +31,15 @@ export class AlbumPhotosComponent implements OnInit {
                 let albumId = params['id'];
                 return this.vkService.getAlbumById(albumId);
             })
-            .then(albums => this.album = albums[0])
+            .then(albums => {
+                this.album = albums[0];
+                return this.vkService.getAlbumPhotos(this.album.id);
+            })
+            .then(photos => {
+                let count = Math.ceil(photos.length / 4);
+                this.rowsCount = Array.apply(null, {length: count}).map(Number.call, Number);
+                this.photos = photos as Photo[];
+            })
             .catch(error => console.log(error.message));
-    }
-
-    goBack() {
-        this.location.back();
     }
 }

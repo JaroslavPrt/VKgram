@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { VkService } from '../services/vk.service';
 
@@ -17,7 +18,8 @@ export class HeaderComponent {
 
     constructor(
         private vkService: VkService,
-        private router: Router
+        private router: Router,
+        private location: Location
     ) {}
 
     signOut() {
@@ -28,5 +30,9 @@ export class HeaderComponent {
 
     isAllAlbums() {
         return this.type === 'all';
+    }
+
+    goBack() {
+        this.location.back();
     }
 }

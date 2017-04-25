@@ -3,9 +3,17 @@
             [title]="album.title"
             [type]="album">
 </app-header>
-<div class="container">
-    <div>asdgpaodjfgipo asdpfjk gpoijdp gjdspf</div>
+<div class="container" *ngIf="photos">
+    <div class="row photos-line" *ngFor="let i of rowsCount">
+        <div class="col-3" *ngFor="let photo of photos | slice:(i*4):(i+1)*4">
+            <div class="photo-wrapper" [ngStyle]="{'background-image': 'url(' + photo.smallUrl + ')'}">
+            
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 
 
