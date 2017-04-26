@@ -64,12 +64,13 @@ $img-width: 200px;
 
 .img-info {
     font-size: 12px;
-    &--title {
+    th {
         min-width: 90px;
-        text-align: start;
     }
-    &--detail{
+    td {
         min-width: 115px;
-        max-width: 250px;
+    }
+    .caption{
+        min-width: 250px;
     }
 }

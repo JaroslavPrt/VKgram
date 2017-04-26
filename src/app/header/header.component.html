@@ -2,7 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col header-data align-self-center">
-                <span *ngIf="!isAllAlbums()" (click)="goBack()" class="icon ion-chevron-left arrow"></span>
+                <span *ngIf="!isAllAlbums()" (click)="goBack()" class="back-icons">
+                    <i class="icon ion-chevron-left"></i>
+                    <i class="icon ion-folder"></i>
+                </span>
                 <img *ngIf="isAllAlbums()"
                      src="{{ imageUrl }}"
                      alt="image"

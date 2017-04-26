@@ -1,0 +1,22 @@
+$extra-color: #354d7b;
+
+.container {
+    background-color: #fff;
+    padding: 15px 0;
+}
+
+.row {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.img-wrapper {
+    margin: 0 auto;
+}
+.photo-info {
+    margin-top: 12px;
+    th {
+        color: $extra-color;
+        width: 150px;
+    }
+}

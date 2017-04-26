@@ -1,24 +1,26 @@
 export class Photo {
 
     id: number;
-    smallUrl: string;
+    images: Array<any>;
     likes: number;
     comments: number;
     reposts: number;
     caption: string;
-    private _created: Date;
+    private _created: string;
 
-    constructor(id, small, likes, comments, reposts, text, created) {
+    constructor()
+    constructor(id, images, likes, comments, reposts, text, created)
+    constructor(id?, images?, likes?, comments?, reposts?, text?, created?) {
         this.id = id;
-        this.smallUrl = small;
+        this.images = images;
         this.likes = likes;
         this.comments = comments;
         this.reposts = reposts;
         this.caption = text;
-        this._created = new Date(created);
+        this._created = created;
     }
 
     cteated() {
-        return this._created.toLocaleDateString('en-US');
+        return new Date(this._created).toLocaleDateString('en-US');
     }
 }

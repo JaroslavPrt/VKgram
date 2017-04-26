@@ -1,4 +1,36 @@
-<app-header *ngIf="user" [image-url]="user.avatarUrl()" [title]="user.fullName()"></app-header>
+<app-header *ngIf="title" [title]="title" [type]="album"></app-header>
 <div class="container">
-
+    <div class="row">
+        <div class="col">
+            <div class="img-wrapper" [style.width.px]="imageWidth">
+                <img *ngIf="photo" src="{{ getPhotoByHeight() }}" alt="photo" class="mx-auto d-block">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="photo-info" *ngIf="photo">
+                <tr>
+                    <th>Likes:</th>
+                    <td>{{ photo.likes }}</td>
+                </tr>
+                <tr>
+                    <th>Reposts:</th>
+                    <td>{{ photo.reposts }}</td>
+                </tr>
+                <tr>
+                    <th>Comments:</th>
+                    <td>{{ photo.comments }}</td>
+                </tr>
+                <tr>
+                    <th>Created:</th>
+                    <td>{{ photo.cteated() }}</td>
+                </tr>
+                <tr *ngIf="photo.caption">
+                    <th class="align-top">Caption:</th>
+                    <td>{{ photo.caption }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>

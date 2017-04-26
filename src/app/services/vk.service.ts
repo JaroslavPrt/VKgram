@@ -85,8 +85,13 @@ export class VkService {
     }
 
     getAlbumPhotos(albumId): Promise<any> {
+        let opts = {
+            album_id: albumId,
+            extended: 1,
+            photo_sizes: 1
+        };
         return new Promise((resolve, reject) => {
-            VK.Api.call('photos.get', {album_id: albumId, extended: 1, photo_sizes: 1}, r => {
+            VK.Api.call('photos.get', opts, r => {
                 r.response ? resolve(this.convertApiPhotos(r.response)) : reject(this.handleError(r));
             });
         });
@@ -95,7 +100,7 @@ export class VkService {
     private convertApiPhotos(apiPhotos) {
         let photos = [];
         for (let p of apiPhotos) {
-            photos.push(new Photo(p.pid, p.sizes[2].src, p.likes.count, p.comments.count, p.reposts.count,
+            photos.push(new Photo(p.pid, p.sizes, p.likes.count, p.comments.count, p.reposts.count,
                 p.text, (+p.created * 1000)));
         }
         return photos;
@@ -103,7 +108,8 @@ export class VkService {
 
     private handleError(error) {
         return {
-            message: error.message || 'oops something went wrong'
+            code: error.error_code || undefined,
+            message: error.error_msg || 'oops something went wrong'
         };
     }
 }

@@ -6,9 +6,17 @@ header {
 
     .header-data {
         color: #ffffff;
-        .arrow {
-            font-size: 26px;
+        .back-icons{
             cursor: pointer;
+            i {
+                margin-right: 7px;
+                &:first-child {
+                    font-size: 26px;
+                }
+                &:last-child {
+                    font-size: 30px;
+                }
+            }
         }
         &--image {
             width: 55px;
@@ -18,7 +26,6 @@ header {
         &--title {
             font-weight: 600;
             font-size: 24px;
-            margin-left: 10px;
         }
     }
 
