@@ -84,11 +84,14 @@ export class VkService {
         return albums;
     }
 
-    getAlbumPhotos(albumId): Promise<any> {
+    getAlbumPhotos(albumId, offset, count): Promise<any> {
         let opts = {
             album_id: albumId,
             extended: 1,
-            photo_sizes: 1
+            photo_sizes: 1,
+            offset: offset,
+            count: count
+
         };
         return new Promise((resolve, reject) => {
             VK.Api.call('photos.get', opts, r => {

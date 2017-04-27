@@ -1,7 +1,7 @@
 <app-header *ngIf="album" [title]="album.title" [type]="album">
 </app-header>
 <div class="container" *ngIf="photos">
-    <div class="photos">
+    <div class="photos" bodyScroll [alpha]="1000" (isAlpha)="loadMore()">
         <div class="row photos--line" *ngFor="let i of rowsCount">
             <div class="col-3" *ngFor="let photo of photos | slice:(i*4):(i+1)*4">
                 <div [ngStyle]="{'background-image': 'url(' + photo.images[2].src + ')'}"
@@ -36,6 +36,11 @@
                         <span>Select</span>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div *ngIf="isLoading && !isAll">
+            <div class="col">
+                <div class="loader"></div>
             </div>
         </div>
     </div>

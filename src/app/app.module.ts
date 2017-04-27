@@ -13,6 +13,7 @@ import { AuthGuard } from './services/auth.guard';
 import { HeaderComponent } from './header/header.component';
 import { AlbumPhotosComponent } from './album-photos/album-photos.component';
 import { PhotoComponent } from './photo/photo.component';
+import { BodyScrollDirective } from './directives/body-scroll.directive';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { PhotoComponent } from './photo/photo.component';
         AlbumsComponent,
         HeaderComponent,
         AlbumPhotosComponent,
-        PhotoComponent
+        PhotoComponent,
+        BodyScrollDirective
     ],
     imports: [
         BrowserModule,
