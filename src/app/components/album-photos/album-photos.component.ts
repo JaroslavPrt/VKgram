@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Album } from '../models/album.model';
-import { VkService } from '../services/vk.service';
-import { Photo } from '../models/photos.model';
-import { PhotoStorageService } from '../services/photo-storage.service';
+import { VkService } from '../../services/vk.service';
+import { Album } from '../../models/album.model';
+import { Photo } from '../../models/photos.model';
+import { PhotoStorageService } from '../../services/photo-storage.service';
 
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/toPromise';

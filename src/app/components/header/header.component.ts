@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { VkService } from '../services/vk.service';
+import { VkService } from '../../services/vk.service';
 
 @Component({
     selector: 'app-header',

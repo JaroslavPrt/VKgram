@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
 
-import { LoginComponent } from './login/login.component';
-import { AlbumsComponent } from './albums/albums.component';
-import { AlbumPhotosComponent } from './album-photos/album-photos.component';
-import { PhotoComponent } from './photo/photo.component';
+import { LoginComponent } from './components/login/login.component';
+import { AlbumsComponent } from './components/albums/albums.component';
+import { AlbumPhotosComponent } from './components/album-photos/album-photos.component';
+import { PhotoComponent } from './components/photo/photo.component';
 
 const routes: Routes = [
     {

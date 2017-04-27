@@ -4,16 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { LoginComponent } from './login/login.component';
-import { AlbumsComponent } from './albums/albums.component';
 import { VkService } from './services/vk.service';
 import { AuthGuard } from './services/auth.guard';
-import { HeaderComponent } from './header/header.component';
-import { AlbumPhotosComponent } from './album-photos/album-photos.component';
-import { PhotoComponent } from './photo/photo.component';
 import { BodyScrollDirective } from './directives/body-scroll.directive';
+
+import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { AlbumsComponent } from './components/albums/albums.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AlbumPhotosComponent } from './components/album-photos/album-photos.component';
+import { PhotoComponent } from './components/photo/photo.component';
 
 @NgModule({
     declarations: [

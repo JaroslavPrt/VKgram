@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
-import { VkService } from '../services/vk.service';
+import { VkService } from '../../services/vk.service';
 
 @Component({
     selector: 'app-login',

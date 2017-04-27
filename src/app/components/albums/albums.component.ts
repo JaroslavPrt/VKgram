@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { VkService } from '../services/vk.service';
-import { User } from '../models/user.model';
-import { Album } from '../models/album.model';
+import { VkService } from '../../services/vk.service';
+import { User } from '../../models/user.model';
+import { Album } from '../../models/album.model';
 
 @Component({
     selector: 'app-albums',

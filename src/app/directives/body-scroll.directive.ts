@@ -1,4 +1,4 @@
-import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
 
 @Directive({
   selector: '[bodyScroll]'
@@ -10,13 +10,14 @@ export class BodyScrollDirective {
 
     private _body;
 
-    constructor() {
+    constructor(private _element: ElementRef) {
         this._body = document.getElementsByTagName('body')[0];
     }
 
     @HostListener('window:scroll') onScroll() {
-        let currentAlpha = this._body.scrollHeight - this._body.scrollTop
-        if (currentAlpha > this.alpha) return;
+        let scrollTop = this._body.scrollTop || document.documentElement.scrollTop;
+        console.log('qw');
+        if (this._body.scrollHeight > (scrollTop + screen.height)) return;
         this.isAlpha.emit();
     }
 }
