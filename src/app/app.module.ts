@@ -14,6 +14,7 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AlbumPhotosComponent } from './components/album-photos/album-photos.component';
 import { PhotoComponent } from './components/photo/photo.component';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { PhotoComponent } from './components/photo/photo.component';
         HeaderComponent,
         AlbumPhotosComponent,
         PhotoComponent,
-        BodyScrollDirective
+        BodyScrollDirective,
+        UploadComponent
     ],
     imports: [
         BrowserModule,

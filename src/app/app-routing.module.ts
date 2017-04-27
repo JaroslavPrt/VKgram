@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AlbumsComponent } from './components/albums/albums.component';
 import { AlbumPhotosComponent } from './components/album-photos/album-photos.component';
 import { PhotoComponent } from './components/photo/photo.component';
+import {UploadComponent} from './upload/upload.component';
 
 const routes: Routes = [
     {
@@ -31,6 +32,10 @@ const routes: Routes = [
         path: 'photo/:id',
         component: PhotoComponent,
         canActivate: [ AuthGuard ]
+    },
+    {
+        path: 'upload',
+        component: UploadComponent,
     },
 ];
 

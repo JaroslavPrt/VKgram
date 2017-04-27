@@ -9,7 +9,7 @@ declare const VK: any;
 @Injectable()
 export class VkService {
 
-    private app_id = 5994214;
+    private app_id = 5993132;
 
     constructor() {
         VK.init({apiId: this.app_id});
@@ -117,6 +117,16 @@ export class VkService {
                 p.text, (+p.created * 1000)));
         }
         return photos;
+    }
+
+    /* hard */
+    serverUploadUrl(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            VK.Api.call('photos.getUploadServer', { album_id: 244218175 }, (r) => {
+                console.dir(r);
+                r.response.upload_url ? resolve(r.response.upload_url) : reject ('error');
+            });
+        });
     }
 
     private callApiMethod(method, params): Promise<any> {

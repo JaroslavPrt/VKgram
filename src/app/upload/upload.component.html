@@ -1,0 +1,9 @@
+<div class="container">
+    <div>
+        <input id="img-file" type="file" (change)="changeListener($event)">
+        <button (click)="load()">load</button>
+    </div>
+    <div>
+        <img id="img-tag" [src]="image" alt="img">
+    </div>
+</div>
