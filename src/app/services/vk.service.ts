@@ -40,40 +40,46 @@ export class VkService {
     }
 
     userInfo(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            VK.Api.call('users.get', {fields: 'photo_50, nickname'}, r => {
+        let method = 'users.get';
+        let params = { fields: 'photo_50, nickname' };
+        return this.callApiMethod(method, params)
+            .then(r => {
                 if (r.response[0]) {
-                    const apiUser = r.response[0];
-                    const user = new User(apiUser.first_name, apiUser.last_name, apiUser.photo_50);
-                    resolve(user);
+                    let apiUser = r.response[0];
+                    let user = new User(apiUser.first_name, apiUser.last_name, apiUser.photo_50);
+                    return Promise.resolve(user);
                 } else {
-                    reject(this.handleError(r));
+                    return Promise.reject(this.handleError(r));
                 }
             });
-        });
     }
 
     getAlbums(): Promise<any> {
-        let opts = {
+        let params = {
             need_covers: 1,
             need_system: 1
         };
-        return this.callGetAlbums(opts);
+        return this.apiAlbums(params);
     }
 
     getAlbumById(id): Promise<any> {
-        let opts = {
+        let params = {
             album_ids: id
         };
-        return this.callGetAlbums(opts);
+        return this.apiAlbums(params);
     }
 
-    private callGetAlbums(opts): Promise<any> {
-        return new Promise((resolve, reject) => {
-            VK.Api.call('photos.getAlbums', opts, r => {
-                r.response ? resolve(this.convertApiAlbums(r.response)) : reject(this.handleError(r));
+    private apiAlbums(params): Promise<any> {
+        let method = 'photos.getAlbums';
+        return this.callApiMethod(method, params)
+            .then(r => {
+                if (r.response) {
+                    let albums = this.convertApiAlbums(r.response);
+                    return Promise.resolve(albums);
+                } else {
+                    return Promise.reject(this.handleError(r));
+                }
             });
-        });
     }
 
     private convertApiAlbums(apiAlbums) {
@@ -85,19 +91,23 @@ export class VkService {
     }
 
     getAlbumPhotos(albumId, offset, count): Promise<any> {
-        let opts = {
+        let method = 'photos.get';
+        let params = {
             album_id: albumId,
             extended: 1,
             photo_sizes: 1,
             offset: offset,
             count: count
-
         };
-        return new Promise((resolve, reject) => {
-            VK.Api.call('photos.get', opts, r => {
-                r.response ? resolve(this.convertApiPhotos(r.response)) : reject(this.handleError(r));
+        return this.callApiMethod(method, params)
+            .then(r => {
+                if (r.response) {
+                    let photos = this.convertApiPhotos(r.response);
+                    return Promise.resolve(photos);
+                } else {
+                    return Promise.reject(this.handleError(r));
+                }
             });
-        });
     }
 
     private convertApiPhotos(apiPhotos) {
@@ -107,6 +117,14 @@ export class VkService {
                 p.text, (+p.created * 1000)));
         }
         return photos;
+    }
+
+    private callApiMethod(method, params): Promise<any> {
+        return new Promise((resolve) => {
+            VK.Api.call(method, params, result => {
+                resolve(result);
+            });
+        });
     }
 
     private handleError(error) {
