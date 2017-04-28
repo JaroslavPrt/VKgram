@@ -1,3 +1,5 @@
+import { environment } from '../../environments/environment';
+
 import { Injectable } from '@angular/core';
 
 import { User } from '../models/user.model';
@@ -9,7 +11,7 @@ declare const VK: any;
 @Injectable()
 export class VkService {
 
-    private app_id = 5994214;
+    private app_id = environment.app_id;
 
     constructor() {
         VK.init({apiId: this.app_id});
