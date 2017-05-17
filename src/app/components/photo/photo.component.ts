@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
 
 import { Photo } from '../../models/photos.model';
-import { PhotoStorageService } from '../../services/photo-storage.service';
+import { IAppState } from '../../redux/IAppState';
 
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/toPromise';
@@ -10,31 +10,26 @@ import 'rxjs/add/operator/toPromise';
 @Component({
     selector: 'app-photo',
     templateUrl: './photo.component.html',
-    styleUrls: ['./photo.component.scss'],
-    providers: [ PhotoStorageService ]
+    styleUrls: ['./photo.component.scss']
 })
-export class PhotoComponent implements OnInit {
+export class PhotoComponent implements OnDestroy {
 
     title: string;
     photo: Photo;
     imageWidth = '';
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private photoStorage: PhotoStorageService
-    ) {}
+    private detailsSubscription;
 
-    ngOnInit() {
-        this.activatedRoute.params.first().toPromise()
-            .then((params: Params) => {
-                let photoId = params['id'];
-                return this.photoStorage.getData(photoId);
-            })
-            .then((data) => {
-                this.title = data.title;
-                this.photo = data.photo;
-            })
-            .catch((error) => console.dir(error));
+    constructor(private ngRedux: NgRedux<IAppState>) {
+        this.detailsSubscription = this.ngRedux.select<IAppState>()
+            .subscribe(details => {
+                this.title = details.title;
+                this.photo = details.photo;
+            });
+    }
+
+    ngOnDestroy(): void {
+        this.detailsSubscription.unsubscribe();
     }
 
     getPhotoByHeight() {

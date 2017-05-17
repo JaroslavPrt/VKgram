@@ -4,16 +4,19 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { VkService } from '../../services/vk.service';
 import { Album } from '../../models/album.model';
 import { Photo } from '../../models/photos.model';
-import { PhotoStorageService } from '../../services/photo-storage.service';
 
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/toPromise';
+
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../redux/IAppState';
+import * as Actions from '../../redux/app.actions';
 
 @Component({
     selector: 'app-album-photos',
     templateUrl: './album-photos.component.html',
     styleUrls: ['./album-photos.component.scss'],
-    providers: [ VkService, PhotoStorageService ]
+    providers: [ VkService ]
 })
 export class AlbumPhotosComponent implements OnInit {
 
@@ -31,8 +34,8 @@ export class AlbumPhotosComponent implements OnInit {
         private vkService: VkService,
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private photoStorage: PhotoStorageService
-    ) {}
+        private ngRedux: NgRedux<IAppState>
+    ) { }
 
     ngOnInit() {
         this.activatedRoute.params.first().toPromise()
@@ -48,7 +51,8 @@ export class AlbumPhotosComponent implements OnInit {
     }
 
     openPhoto(photo) {
-        this.photoStorage.setData(this.album.title, photo);
+        let action = Actions.setPhotoDetails(this.album.title, photo);
+        this.ngRedux.dispatch(action);
         this.router.navigate(['/photo', photo.id]);
     }
 

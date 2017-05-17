@@ -15,6 +15,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { AlbumPhotosComponent } from './components/album-photos/album-photos.component';
 import { PhotoComponent } from './components/photo/photo.component';
 
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
+import { IAppState } from './redux/IAppState';
+import { INITIAL_STATE, rootReduser} from './redux/store';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -29,7 +33,8 @@ import { PhotoComponent } from './components/photo/photo.component';
         BrowserModule,
         FormsModule,
         HttpModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NgReduxModule
     ],
     providers: [
         VkService,
@@ -38,4 +43,8 @@ import { PhotoComponent } from './components/photo/photo.component';
     bootstrap: [ AppComponent ]
 })
 export class AppModule {
+    constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+        const storeEnhancers = devTools.isEnabled() ? [ devTools.enhancer() ] : [];
+        ngRedux.configureStore(rootReduser, INITIAL_STATE, [], storeEnhancers);
+    }
 }
